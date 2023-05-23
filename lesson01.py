@@ -1,6 +1,5 @@
 #  Задача 2: Найдите сумму цифр трехзначного числа. 
 print("\nЗадача 2")
-print(sum([int(x) for x in input("Введите число: ").split()]))
 print(sum([int(x) for x in input("Введите число: ")]))
 
 

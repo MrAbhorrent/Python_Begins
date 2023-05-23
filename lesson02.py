@@ -10,8 +10,9 @@ import array
 n = int(input("Введите количество монеток: "))
 coinArray = array.array('i', [random.randint(0, 1) for i in range(n)])
 reshkaSumm = sum(x == 0 for x in coinArray)
-
-print(f"n -> {coinArray}. \nКоличество монеток которые над перевернуть -> {reshkaSumm}")
+orelSumm = sum(x == 1 for x in coinArray)
+reverseColinCount = reshkaSumm if orelSumm > reshkaSumm else orelSumm
+print(f"n -> {coinArray}. \nКоличество монеток которые над перевернуть -> {reverseColinCount}")
 
 import math
 # Задача 12: Петя и Катя – брат и сестра. Петя – студент, а Катя –
