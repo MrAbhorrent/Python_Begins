@@ -41,9 +41,10 @@ divider_line()
 # -> 5
 
 value_x = int(input("Input number X: "))
-print(array)
-search_number = array[0]
-delta_begin = abs(value_x - array[0])
+array2 = create_arrray(n)
+print(array2)
+search_number = array2[0]
+delta_begin = abs(value_x - array2[0])
 for i in array:
     delta = abs(value_x - i)
     if (delta < delta_begin):
