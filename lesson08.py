@@ -74,6 +74,10 @@ def delete_contact(_data):
     print_records(phonebook_data)
     save_contact(_data, 'w', _contact=phonebook_data)
 
+def input_edit(_string, defult_value = ''):
+    result = input(_string + f" [{defult_value}]: ")
+    return result if len(result) > 0 else defult_value
+    
 def edit_contact(_data):
     phonebook_data = read_data(_data)
     print_records(phonebook_data)
@@ -82,18 +86,15 @@ def edit_contact(_data):
     number_delete_record = int(input("Введите номер записи для редактирования: ")) - 1
     edit_record = phonebook_data.pop(number_delete_record)
     print("Редактируем запись - " + edit_record)
-    last_name = edit_record.split(';')[0]
-    first_name = edit_record.split(';')[1]
-    surrender_name = edit_record.split(';')[2]
-    phone_number = edit_record.split(';')[3]
-    edit_contact_last_name = input(f"Введите Фамилию [{last_name}]: ")
-    edit_contact_first_name = input(f"Введите Имя [{first_name}]: ")
-    edit_contact_surrender_name = input(f"Введите Отчество [{surrender_name}]: ")
-    edit_contact_phonenumber = input(f"Введите Номер [{phone_number}]: ")
-    last_name = edit_contact_last_name if len(edit_contact_last_name) > 0 else last_name
-    first_name = edit_contact_first_name if len(edit_contact_first_name) > 0 else first_name
-    surrender_name = edit_contact_surrender_name if len(edit_contact_surrender_name) > 0 else surrender_name
-    phone_number = edit_contact_phonenumber if len(edit_contact_phonenumber) > 0 else phone_number
+    temp_list = edit_record.split(';')
+    last_name = temp_list[0]
+    first_name = temp_list[1]
+    surrender_name = temp_list[2]
+    phone_number = temp_list[3]
+    last_name = input_edit("Введите Фамилию", last_name)
+    first_name = input_edit("Введите Имя", first_name)
+    surrender_name = input_edit("Введите Отчество", surrender_name)
+    phone_number = input_edit("Введите Номер", phone_number)
     input_string = last_name + ';' + first_name + ';' + surrender_name + ';' + phone_number
     phonebook_data.insert(number_delete_record, input_string)
     save_contact(_data, 'w', _contact=phonebook_data)
