@@ -5,8 +5,6 @@
 # A = 2; B = 3 -> 8
 def m_power(a, b):
     if b == 1:
-        return a
-    elif b == 0:
         return 1
     return a * m_power(a, b - 1)
 print(f"A = 3, B = 5 -=> {m_power(3, 5)}")
