@@ -50,8 +50,8 @@ def add_contact(_data):
     new_contact_last_name = input("Введите Фамилию: ")
     new_contact_first_name = input("Введите Имя: ")
     new_contact_surrender_name = input("Введите Отчество: ")
-    new_contact_number = input("Введите Номер: ")
-    input_string = new_contact_last_name + ';' + new_contact_first_name + ';' + new_contact_surrender_name + ';' + new_contact_number
+    new_contact_phonenumber = input("Введите Номер: ")
+    input_string = f"{new_contact_last_name};{new_contact_first_name};{new_contact_surrender_name};{new_contact_phonenumber}"
     record = []
     record.append(input_string)
     save_contact(_data, 'a', _contact=record)
@@ -68,7 +68,7 @@ def delete_contact(_data):
     phonebook_data = read_data(_data)
     print_records(phonebook_data)
     print_divider(n = 10)
-    print("")
+    print()
     number_delete_record = input("Введите номер записи для удаления: ")
     print("Удаляем запись - " + phonebook_data.pop(int(number_delete_record) - 1 ))
     print_records(phonebook_data)
@@ -81,21 +81,17 @@ def input_edit(_string, defult_value = ''):
 def edit_contact(_data):
     phonebook_data = read_data(_data)
     print_records(phonebook_data)
-    print_divider(n = 10)
-    print("")
+    print_divider(symbol = "*", n = 25)
+    print()
     number_delete_record = int(input("Введите номер записи для редактирования: ")) - 1
     edit_record = phonebook_data.pop(number_delete_record)
     print("Редактируем запись - " + edit_record)
-    temp_list = edit_record.split(';')
-    last_name = temp_list[0]
-    first_name = temp_list[1]
-    surrender_name = temp_list[2]
-    phone_number = temp_list[3]
+    last_name, first_name, surrender_name, phone_number = edit_record.split(';')
     last_name = input_edit("Введите Фамилию", last_name)
     first_name = input_edit("Введите Имя", first_name)
     surrender_name = input_edit("Введите Отчество", surrender_name)
     phone_number = input_edit("Введите Номер", phone_number)
-    input_string = last_name + ';' + first_name + ';' + surrender_name + ';' + phone_number
+    input_string = f"{last_name};{first_name};{surrender_name};{phone_number}"
     phonebook_data.insert(number_delete_record, input_string)
     save_contact(_data, 'w', _contact=phonebook_data)
         
@@ -106,8 +102,8 @@ def print_records(_data):
         print(*contact.split(';'))
         counter += 1
 
-def print_divider(n = 80):
-    print('=' * n)    
+def print_divider(symbol = "=", n = 80):
+    print(symbol * n)    
 
 def main():
     work_flag = True
@@ -137,8 +133,7 @@ def main():
             work_flag = False   
         print_divider()             
         
-        
-    
+
 data_file = 'data\data.txt'
 main()
 
